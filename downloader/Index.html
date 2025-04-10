@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sexy Insta Downloader</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.5), 0 0 40px rgba(0, 255, 255, 0.3);
+            width: 450px;
+            text-align: center;
+            border: 1px solid rgba(255, 0, 127, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 0, 127, 0.2), transparent);
+            animation: glow 8s infinite alternate;
+        }
+        h1 {
+            font-size: 32px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.7);
+        }
+        .input-box {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+            transition: box-shadow 0.3s;
+        }
+        .input-box:focus {
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        .download-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #ff007f, #00ffff);
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+        }
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
+            background: linear-gradient(45deg, #00ffff, #ff007f);
+        }
+        .status {
+            margin-top: 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+        /* Animations */
+        @keyframes glow {
+            0% { transform: translate(10%, 10%) scale(1); }
+            50% { transform: translate(-10%, -10%) scale(1.1); }
+            100% { transform: translate(10%, 10%) scale(1); }
+        }
+        .container {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Insta Downloader</h1>
+        <input type="text" class="input-box" placeholder="Paste Instagram Link" id="instaLink">
+        <button class="download-btn" onclick="downloadContent()">Download Now</button>
+        <p class="status" id="status">Reels | Stories | Posts - Get it all!</p>
+    </div>
+
+    <script>
+        function downloadContent() {
+            const link = document.getElementById('instaLink').value;
+            const status = document.getElementById('status');
+
+            if (link.trim() === "") {
+                status.textContent = "Enter a valid Instagram link!";
+                status.style.color = "#ff007f";
+                return;
+            }
+
+            status.textContent = "Downloading in style...";
+            status.style.color = "#00ffff";
+
+            // Placeholder for actual download logic
+            setTimeout(() => {
+                status.textContent = "Downloaded! (Demo Mode)";
+                status.style.color = "rgba(255, 255, 255, 0.7)";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
