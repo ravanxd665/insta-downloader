@@ -3,168 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sexy Insta Downloader</title>
+    <title>18+ Prank Zone</title>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
             overflow: hidden;
         }
         .container {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.5), 0 0 40px rgba(0, 255, 255, 0.3);
-            width: 450px;
+            border-radius: 10px;
             text-align: center;
-            border: 1px solid rgba(255, 0, 127, 0.2);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 0, 127, 0.2), transparent);
-            animation: glow 8s infinite alternate;
-            z-index: -1;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            max-width: 600px;
+            width: 100%;
         }
         h1 {
-            font-size: 32px;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            text-shadow: 0 0 10px rgba(255, 0, 127, 0.7);
+            font-size: 36px;
+            color: #ff4444;
+            margin-bottom: 20px;
         }
-        .input-box {
-            width: 90%;
-            padding: 15px;
-            border: none;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            outline: none;
-            font-size: 16px;
-            color: #fff;
-            margin: 0 auto 25px auto;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-            transition: box-shadow 0.3s;
-            display: block;
-            position: relative;
-            z-index: 2;
-        }
-        .input-box:focus {
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-        }
-        .download-btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 30px;
-            background: linear-gradient(45deg, #ff007f, #00ffff);
-            color: #fff;
+        p {
             font-size: 18px;
-            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 15px 30px;
+            background: #ff4444;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.4s;
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
-        }
-        .download-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
-            background: linear-gradient(45deg, #00ffff, #ff007f);
-        }
-        .status {
-            margin-top: 20px;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
-        }
-        .download-link {
-            margin-top: 15px;
-            display: none;
-            color: #00ffff;
-            text-decoration: none;
             font-size: 16px;
+            transition: background 0.3s;
         }
-        .download-link:hover {
-            text-decoration: underline;
+        .btn:hover {
+            background: #ff6666;
         }
-        @keyframes glow {
-            0% { transform: translate(10%, 10%) scale(1); }
-            50% { transform: translate(-10%, -10%) scale(1.1); }
-            100% { transform: translate(10%, 10%) scale(1); }
+        .prank {
+            display: none;
         }
-        .container {
-            animation: fadeIn 1.5s ease-in-out;
+        .prank h2 {
+            color: #ff4444;
+            font-size: 28px;
+            animation: shake 0.5s infinite;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+        .prank img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 20px;
+            box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
+        }
+        .prank p {
+            font-size: 20px;
+            color: #ffcc00;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Insta Downloader</h1>
-        <input type="text" class="input-box" placeholder="Paste Instagram Link" id="instaLink">
-        <button class="download-btn" onclick="downloadContent()">Download Now</button>
-        <p class="status" id="status">Reels | Stories | Posts - Get it all!</p>
-        <a href="#" class="download-link" id="downloadLink" target="_blank">Click to Download</a>
+    <div class="container" id="warning">
+        <h1>18+ Adult Zone</h1>
+        <p>This website contains exclusive adult content. Are you ready to enter? (18+ only)</p>
+        <button class="btn" onclick="showPrank()">I am 18+</button>
+        <p style="margin-top: 20px; font-size: 14px;">Under 18? Leave now!</p>
+    </div>
+
+    <div class="container prank" id="prankContent">
+        <h2>Abe Chamar Padhai Karle</h2>
+        <img src="https://i.imgur.com/5rXgW8F.jpg" alt="Funny Prank Image">
+        <p>Haha! Kya socha tha? Ab jaake padhai kar! 😂</p>
     </div>
 
     <script>
-        async function downloadContent() {
-            const link = document.getElementById('instaLink').value.trim();
-            const status = document.getElementById('status');
-            const downloadLink = document.getElementById('downloadLink');
-
-            if (!link || !link.includes('instagram.com')) {
-                status.textContent = "Enter a valid Instagram link!";
-                status.style.color = "#ff007f";
-                downloadLink.style.display = "none";
-                return;
-            }
-
-            status.textContent = "Fetching content...";
-            status.style.color = "#00ffff";
-            downloadLink.style.display = "none";
-
-            try {
-                // Using FastDL proxy via allorigins to bypass CORS
-                const proxyUrl = 'https://api.allorigins.win/get?url=';
-                const targetUrl = `https://fastdl.app/download?url=${encodeURIComponent(link)}`;
-                const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
-                const data = await response.json();
-
-                // Extract download link from FastDL response
-                const htmlContent = data.contents;
-                const downloadUrlMatch = htmlContent.match(/href="(https:\/\/.*?\.mp4.*?)"/i);
-                const downloadUrl = downloadUrlMatch ? downloadUrlMatch[1] : null;
-
-                if (downloadUrl) {
-                    status.textContent = "Ready to download!";
-                    downloadLink.href = downloadUrl;
-                    downloadLink.style.display = "block";
-                } else {
-                    status.textContent = "Failed to extract download link!";
-                    status.style.color = "#ff007f";
-                }
-            } catch (error) {
-                console.error(error);
-                status.textContent = "Error: Could not fetch content!";
-                status.style.color = "#ff007f";
-            }
+        function showPrank() {
+            document.getElementById('warning').style.display = 'none';
+            document.getElementById('prankContent').style.display = 'block';
         }
     </script>
 </body>
