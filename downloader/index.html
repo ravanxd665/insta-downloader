@@ -25,6 +25,7 @@
             border: 1px solid rgba(255, 0, 127, 0.2);
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
         .container::before {
             content: '';
@@ -35,6 +36,7 @@
             height: 200%;
             background: radial-gradient(circle, rgba(255, 0, 127, 0.2), transparent);
             animation: glow 8s infinite alternate;
+            z-index: -1;
         }
         h1 {
             font-size: 32px;
@@ -45,7 +47,7 @@
             text-shadow: 0 0 10px rgba(255, 0, 127, 0.7);
         }
         .input-box {
-            width: 100%;
+            width: 90%;
             padding: 15px;
             border: none;
             border-radius: 30px;
@@ -53,9 +55,12 @@
             outline: none;
             font-size: 16px;
             color: #fff;
-            margin-bottom: 25px;
+            margin: 0 auto 25px auto;
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
             transition: box-shadow 0.3s;
+            display: block;
+            position: relative;
+            z-index: 2;
         }
         .input-box:focus {
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
@@ -85,7 +90,16 @@
             color: rgba(255, 255, 255, 0.7);
             text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
         }
-        /* Animations */
+        .download-link {
+            margin-top: 15px;
+            display: none;
+            color: #00ffff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .download-link:hover {
+            text-decoration: underline;
+        }
         @keyframes glow {
             0% { transform: translate(10%, 10%) scale(1); }
             50% { transform: translate(-10%, -10%) scale(1.1); }
@@ -106,27 +120,49 @@
         <input type="text" class="input-box" placeholder="Paste Instagram Link" id="instaLink">
         <button class="download-btn" onclick="downloadContent()">Download Now</button>
         <p class="status" id="status">Reels | Stories | Posts - Get it all!</p>
+        <a href="#" class="download-link" id="downloadLink" target="_blank">Click to Download</a>
     </div>
 
     <script>
-        function downloadContent() {
-            const link = document.getElementById('instaLink').value;
+        async function downloadContent() {
+            const link = document.getElementById('instaLink').value.trim();
             const status = document.getElementById('status');
+            const downloadLink = document.getElementById('downloadLink');
 
-            if (link.trim() === "") {
+            if (!link || !link.includes('instagram.com')) {
                 status.textContent = "Enter a valid Instagram link!";
                 status.style.color = "#ff007f";
+                downloadLink.style.display = "none";
                 return;
             }
 
-            status.textContent = "Downloading in style...";
+            status.textContent = "Fetching content...";
             status.style.color = "#00ffff";
+            downloadLink.style.display = "none";
 
-            // Placeholder for actual download logic
-            setTimeout(() => {
-                status.textContent = "Downloaded! (Demo Mode)";
-                status.style.color = "rgba(255, 255, 255, 0.7)";
-            }, 2000);
+            try {
+                // Using a third-party API directly (replace with a working API)
+                const apiUrl = `https://api.snapinsta.app/v1/download?url=${encodeURIComponent(link)}`;
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.url) {
+                    status.textContent = "Ready to download!";
+                    downloadLink.href = data.url; // Assuming API returns a "url" field
+                    downloadLink.style.display = "block";
+                } else {
+                    status.textContent = data.error || "Failed to fetch content!";
+                    status.style.color = "#ff007f";
+                }
+            } catch (error) {
+                console.error(error);
+                status.textContent = "Error: Could not fetch content!";
+                status.style.color = "#ff007f";
+            }
         }
     </script>
 </body>
