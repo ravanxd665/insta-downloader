@@ -141,21 +141,23 @@
             downloadLink.style.display = "none";
 
             try {
-                // Using a third-party API directly (replace with a working API)
-                const apiUrl = `https://api.snapinsta.app/v1/download?url=${encodeURIComponent(link)}`;
-                const response = await fetch(apiUrl, {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' }
-                });
-
+                // Using FastDL proxy via allorigins to bypass CORS
+                const proxyUrl = 'https://api.allorigins.win/get?url=';
+                const targetUrl = `https://fastdl.app/download?url=${encodeURIComponent(link)}`;
+                const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
                 const data = await response.json();
 
-                if (response.ok && data.url) {
+                // Extract download link from FastDL response
+                const htmlContent = data.contents;
+                const downloadUrlMatch = htmlContent.match(/href="(https:\/\/.*?\.mp4.*?)"/i);
+                const downloadUrl = downloadUrlMatch ? downloadUrlMatch[1] : null;
+
+                if (downloadUrl) {
                     status.textContent = "Ready to download!";
-                    downloadLink.href = data.url; // Assuming API returns a "url" field
+                    downloadLink.href = downloadUrl;
                     downloadLink.style.display = "block";
                 } else {
-                    status.textContent = data.error || "Failed to fetch content!";
+                    status.textContent = "Failed to extract download link!";
                     status.style.color = "#ff007f";
                 }
             } catch (error) {
